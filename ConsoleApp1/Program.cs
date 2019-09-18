@@ -10,7 +10,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("HEJ");
+            Console.WriteLine("HEJDÅ");
             try
             {
                 PhotoShopLib.ImageEditor.MakeBlurr(args[0]);
