@@ -16,10 +16,10 @@ namespace ConsoleApp1
                 Bitmap negativeImage = ImageEditor.MakeNegative(args[0], out string newFilePathNegative);
                 negativeImage.Save(newFilePathNegative);
 
-                Bitmap blackAndWhiteImage = PhotoShopLib.ImageEditor.MakeBlackAndWhite(args[0], out string newFilePathBlackAndWhite);
+                Bitmap blackAndWhiteImage = ImageEditor.MakeBlackAndWhite(args[0], out string newFilePathBlackAndWhite);
                 blackAndWhiteImage.Save(newFilePathBlackAndWhite);
                 
-                Bitmap blurredImage = PhotoShopLib.ImageEditor.MakeBlurr(args[0], out string newFilePathBlurred);
+                Bitmap blurredImage = ImageEditor.MakeBlurr(args[0], out string newFilePathBlurred);
                 blurredImage.Save(newFilePathBlurred);
 
                 Console.WriteLine("Operations done. Copies of you manipulated images are saved where the original file is. Bye!");
@@ -39,7 +39,7 @@ namespace ConsoleApp1
             //Round 2: using new input
             string input = Console.ReadLine();
 
-            bool isInputValid = PhotoShopLib.InputHandler.CheckIfValidInput(input, out string message);
+            bool isInputValid = InputHandler.CheckIfValidInput(input, out string message);
 
             if (isInputValid == false)
             {
