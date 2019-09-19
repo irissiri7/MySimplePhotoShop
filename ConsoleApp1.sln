@@ -6,14 +6,13 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{7DB8C62E-8A45-4A14-BC81-86CE50504EBC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D3BCFAB4-D982-4B9E-BB8C-A705F38880F0} = {D3BCFAB4-D982-4B9E-BB8C-A705F38880F0}
-		{8C73BBF9-FEE0-469C-9A14-4BF0868FB50B} = {8C73BBF9-FEE0-469C-9A14-4BF0868FB50B}
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{8C73BBF9-FEE0-469C-9A14-4BF0868FB50B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitTestProject1", "NUnitTestProject1\NUnitTestProject1.csproj", "{D3BCFAB4-D982-4B9E-BB8C-A705F38880F0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoShopLib", "ImageEditor\PhotoShopLib.csproj", "{63C1B13F-8CFF-4DAA-A5E6-CFF98570712D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIPhotoShop", "GUIPhotoShop\GUIPhotoShop.csproj", "{9A303265-D670-47AE-A933-420DE0031FCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +24,6 @@ Global
 		{7DB8C62E-8A45-4A14-BC81-86CE50504EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DB8C62E-8A45-4A14-BC81-86CE50504EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DB8C62E-8A45-4A14-BC81-86CE50504EBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C73BBF9-FEE0-469C-9A14-4BF0868FB50B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C73BBF9-FEE0-469C-9A14-4BF0868FB50B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C73BBF9-FEE0-469C-9A14-4BF0868FB50B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C73BBF9-FEE0-469C-9A14-4BF0868FB50B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D3BCFAB4-D982-4B9E-BB8C-A705F38880F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D3BCFAB4-D982-4B9E-BB8C-A705F38880F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3BCFAB4-D982-4B9E-BB8C-A705F38880F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,6 +32,10 @@ Global
 		{63C1B13F-8CFF-4DAA-A5E6-CFF98570712D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63C1B13F-8CFF-4DAA-A5E6-CFF98570712D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63C1B13F-8CFF-4DAA-A5E6-CFF98570712D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A303265-D670-47AE-A933-420DE0031FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A303265-D670-47AE-A933-420DE0031FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A303265-D670-47AE-A933-420DE0031FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A303265-D670-47AE-A933-420DE0031FCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,7 +10,7 @@ namespace PhotoShopLib
         //PROPERTIES
         //CONSTRUCTOR
         //METHODS
-        public static void MakeNegative(string originalFile)
+        public static string MakeNegative(string originalFile)
         {
             Bitmap originalImage = new Bitmap(originalFile);
             Bitmap imageClone = (Bitmap)originalImage.Clone();
@@ -37,9 +37,11 @@ namespace PhotoShopLib
             imageClone.Save(newFile);
 
             Console.WriteLine("Happydays");
+
+            return newFile;
         }
 
-        public static void MakeBlackAndWhite(string originalFile)
+        public static string MakeBlackAndWhite(string originalFile)
         {
             Bitmap originalImage = new Bitmap(originalFile);
             Bitmap imageClone = (Bitmap)originalImage.Clone();
@@ -63,10 +65,12 @@ namespace PhotoShopLib
             imageClone.Save(newFile);
 
             Console.WriteLine("Happydays");
+
+            return newFile;
         }
 
         //This method will blurr all pixels except the outer ones, meaning the image will have a "frame" of 1 px wide unblurred pixels.
-        public static void MakeBlurr(string originalFile)
+        public static string MakeBlurr(string originalFile)
         {
             Bitmap originalImage = new Bitmap(originalFile);
             Bitmap imageClone = (Bitmap)originalImage.Clone();
@@ -105,6 +109,8 @@ namespace PhotoShopLib
             imageClone.Save(newFile);
 
             Console.WriteLine("Happydays");
+
+            return newFile;
         }
 
         
