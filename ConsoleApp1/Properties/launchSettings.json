@@ -2,7 +2,7 @@
   "profiles": {
     "ConsoleApp1": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\lydia\\Desktop\\TooBigDog.jpg"
+      "commandLineArgs": "C:\\Users\\lydia\\Desktop\\puppy.jpg"
     }
   }
 }

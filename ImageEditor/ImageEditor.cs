@@ -10,7 +10,10 @@ namespace PhotoShopLib
         //PROPERTIES
         //CONSTRUCTOR
         //METHODS
-        public static string MakeNegative(string originalFile)
+
+
+        //ATTEMPTING IMPROVEMENTS
+        public static Bitmap MakeNegative(string originalFile, out string newFilePath)
         {
             Bitmap originalImage = new Bitmap(originalFile);
             Bitmap imageClone = (Bitmap)originalImage.Clone();
@@ -33,15 +36,14 @@ namespace PhotoShopLib
                 }
             }
 
-            string newFile = FileNameEditor.AddSuffixToFileName(originalFile, "_negative");
-            imageClone.Save(newFile);
+            newFilePath = FileNameEditor.AddSuffixToFileName(originalFile, "_negative");
 
             Console.WriteLine("Happydays");
 
-            return newFile;
+            return imageClone;
         }
 
-        public static string MakeBlackAndWhite(string originalFile)
+        public static Bitmap MakeBlackAndWhite(string originalFile, out string newFilePath)
         {
             Bitmap originalImage = new Bitmap(originalFile);
             Bitmap imageClone = (Bitmap)originalImage.Clone();
@@ -61,16 +63,15 @@ namespace PhotoShopLib
                 }
             }
 
-            string newFile = FileNameEditor.AddSuffixToFileName(originalFile, "_blackandwhite");
-            imageClone.Save(newFile);
+            newFilePath = FileNameEditor.AddSuffixToFileName(originalFile, "_blackandwhite");
 
             Console.WriteLine("Happydays");
 
-            return newFile;
+            return imageClone;
         }
 
         //This method will blurr all pixels except the outer ones, meaning the image will have a "frame" of 1 px wide unblurred pixels.
-        public static string MakeBlurr(string originalFile)
+        public static Bitmap MakeBlurr(string originalFile, out string newFilePath)
         {
             Bitmap originalImage = new Bitmap(originalFile);
             Bitmap imageClone = (Bitmap)originalImage.Clone();
@@ -105,12 +106,11 @@ namespace PhotoShopLib
                 }
             }
 
-            string newFile = FileNameEditor.AddSuffixToFileName(originalFile, "_blurr");
-            imageClone.Save(newFile);
+            newFilePath = FileNameEditor.AddSuffixToFileName(originalFile, "_blurr");
 
             Console.WriteLine("Happydays");
 
-            return newFile;
+            return imageClone;
         }
 
         

@@ -30,7 +30,7 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Negative = new System.Windows.Forms.Button();
+            this.Button_1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -61,16 +61,16 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // Negative
+            // Button_1
             // 
-            this.Negative.BackColor = System.Drawing.SystemColors.Control;
-            this.Negative.Location = new System.Drawing.Point(672, 194);
-            this.Negative.Name = "Negative";
-            this.Negative.Size = new System.Drawing.Size(195, 100);
-            this.Negative.TabIndex = 3;
-            this.Negative.Text = "Negative";
-            this.Negative.UseVisualStyleBackColor = false;
-            this.Negative.Click += new System.EventHandler(this.Making_Negative);
+            this.Button_1.BackColor = System.Drawing.SystemColors.Control;
+            this.Button_1.Location = new System.Drawing.Point(672, 194);
+            this.Button_1.Name = "Button_1";
+            this.Button_1.Size = new System.Drawing.Size(195, 100);
+            this.Button_1.TabIndex = 3;
+            this.Button_1.Text = "Negative";
+            this.Button_1.UseVisualStyleBackColor = false;
+            this.Button_1.Click += new System.EventHandler(this.Button_1_Click);
             // 
             // button4
             // 
@@ -127,7 +127,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.Negative);
+            this.Controls.Add(this.Button_1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
@@ -142,7 +142,7 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button Negative;
+        private System.Windows.Forms.Button Button_1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button2;

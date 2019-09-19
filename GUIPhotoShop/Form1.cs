@@ -19,41 +19,52 @@ namespace GUIPhotoShop
         }
 
 
-        string path;
+        string pathOriginalImage;
+        string pathModifiedImage;
         private void Button1_Click(object sender, EventArgs e)
         {
-
             if (OpenFile.ShowDialog() == DialogResult.OK)
             {
-                path = OpenFile.FileName;
-                pictureBox1.Image = Image.FromFile(path);
+                pathOriginalImage = OpenFile.FileName;
+                pictureBox1.Image = Image.FromFile(pathOriginalImage);
+                OpenFile.Dispose();
             }
-
         }
 
-        private void Making_Negative(object sender, EventArgs e)
+        private void Button_1_Click(object sender, EventArgs e)
         {
-            string newFile = PhotoShopLib.ImageEditor.MakeNegative(path);
+            string newFile = PhotoShopLib.ImageEditor.MakeNegative(pathOriginalImage);
+            pathModifiedImage = newFile;
+
             pictureBox2.Image = Image.FromFile(newFile);
+            pictureBox2.Dispose();
         }
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            string newFile = PhotoShopLib.ImageEditor.MakeBlackAndWhite(path);
+            string newFile = PhotoShopLib.ImageEditor.MakeBlackAndWhite(pathOriginalImage);
             pictureBox2.Image = Image.FromFile(newFile);
+            pictureBox2.Dispose();
         }
 
         private void Button5_Click(object sender, EventArgs e)
         {
-            string newFile = PhotoShopLib.ImageEditor.MakeBlurr(path);
+            string newFile = PhotoShopLib.ImageEditor.MakeBlurr(pathOriginalImage);
             pictureBox2.Image = Image.FromFile(newFile);
+            pictureBox2.Dispose();
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            string newFile = PhotoShopLib.ImageEditor.MakeNegative(path);
-            pictureBox2.Image = Image.FromFile(newFile);
-        }
+            SaveFileDialog save = new SaveFileDialog();
+            save.FileName = pathModifiedImage;
 
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                BinaryWriter bw = new BinaryWriter(File.Create(pathModifiedImage));
+                
+                bw.Dispose();
+            }
+        }
     }
 }

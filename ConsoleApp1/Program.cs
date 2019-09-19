@@ -10,15 +10,24 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            //First round: attemting to use command prompt args.
             try
             {
-                PhotoShopLib.ImageEditor.MakeBlurr(args[0]);
-                PhotoShopLib.ImageEditor.MakeNegative(args[0]);
-                PhotoShopLib.ImageEditor.MakeBlackAndWhite(args[0]);
+                Bitmap negativeImage = ImageEditor.MakeNegative(args[0], out string newFilePathNegative);
+                negativeImage.Save(newFilePathNegative);
+
+                Bitmap blackAndWhiteImage = PhotoShopLib.ImageEditor.MakeBlackAndWhite(args[0], out string newFilePathBlackAndWhite);
+                blackAndWhiteImage.Save(newFilePathBlackAndWhite);
+                
+                Bitmap blurredImage = PhotoShopLib.ImageEditor.MakeBlurr(args[0], out string newFilePathBlurred);
+                blurredImage.Save(newFilePathBlurred);
+
                 Console.WriteLine("Operations done. Copies of you manipulated images are saved where the original file is. Bye!");
                 System.Environment.Exit(0);
             }
-            catch(ArgumentException)
+
+            //If command promt args not available, asking for new input
+            catch (ArgumentException)
             {
                 Console.WriteLine("Something was wrong with the input. Please try to enter a new file path");
             }
@@ -27,6 +36,7 @@ namespace ConsoleApp1
                 Console.WriteLine("Something was wrong with the input. Please try to enter a new file path");
             }
 
+            //Round 2: using new input
             string input = Console.ReadLine();
 
             bool isInputValid = PhotoShopLib.InputHandler.CheckIfValidInput(input, out string message);
@@ -40,9 +50,16 @@ namespace ConsoleApp1
 
             else
             {
-                PhotoShopLib.ImageEditor.MakeBlurr(input);
-                PhotoShopLib.ImageEditor.MakeNegative(input);
-                PhotoShopLib.ImageEditor.MakeBlackAndWhite(input);
+                Bitmap blurredImage = ImageEditor.MakeBlurr(input, out string filePathBlurr);
+                blurredImage.Save(filePathBlurr);
+
+                Bitmap NegativeImage = ImageEditor.MakeNegative(input, out string filePathNegative);
+                blurredImage.Save(filePathNegative);
+
+
+                Bitmap BlackAndWhiteImage = ImageEditor.MakeBlackAndWhite(input, out string filePathBlackAndWhite);
+                blurredImage.Save(filePathBlackAndWhite);
+
                 Console.WriteLine("Operations done. Copies of you manipulated images are saved where the original file is. Bye!");
                 System.Environment.Exit(0);
             }
