@@ -8,6 +8,23 @@ namespace Tests
     {
 
 
+        //TESTING THE IMAGEEDITOR
+        [Test]
+        public void ImageEditor_MakeNegative_IsNegative()
+        {
+            string testImagePath = @"testImages\puppy.jpg";
+
+            Bitmap testImageOriginal = new Bitmap(testImagePath);
+            Bitmap testImageClone = (Bitmap)testImageOriginal.Clone();
+
+            
+            Color testImageColor = Color.FromArgb(100, 50, 150);
+            testImageOriginal.SetPixel(1, 1, testImageColor);
+            ImageEditor.MakeNegative(tes)
+            
+
+        }
+
         //TESTING THE INPUTHANDLER
         [Test]
         public void CheckInput_TooBigImage_ReturnsFalse()

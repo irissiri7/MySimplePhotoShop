@@ -12,7 +12,23 @@ namespace PhotoShopLib
         //METHODS
 
 
-        //ATTEMPTING IMPROVEMENTS
+        //This is the fasttrack method for simply manipulating an image in all 
+        //possible ways, save hem and then closing the program
+        public static void ManipulateAllAndCloseProgram(string filePath)
+        {
+            Bitmap negativeImage = ImageEditor.MakeNegative(filePath, out string newFilePathNegative);
+            negativeImage.Save(newFilePathNegative);
+
+            Bitmap blackAndWhiteImage = ImageEditor.MakeBlackAndWhite(filePath, out string newFilePathBlackAndWhite);
+            blackAndWhiteImage.Save(newFilePathBlackAndWhite);
+
+            Bitmap blurredImage = ImageEditor.MakeBlurr(filePath, out string newFilePathBlurred);
+            blurredImage.Save(newFilePathBlurred);
+
+            Console.WriteLine("Operations done. Copies of your manipulated images are saved where the original file is. Bye!");
+            System.Environment.Exit(0);
+        }
+
         public static Bitmap MakeNegative(string originalFile, out string newFilePath)
         {
             Bitmap originalImage = new Bitmap(originalFile);
@@ -26,7 +42,6 @@ namespace PhotoShopLib
                 {
                     Color pixelColor = imageClone.GetPixel(x, y);
 
-                    //var negativeA = 255 - pixelColor.A;
                     var negativeR = 255 - pixelColor.R;
                     var negativeG = 255 - pixelColor.G;
                     var negativeB = 255 - pixelColor.B;
