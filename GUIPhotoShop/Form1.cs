@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using PhotoShopLib;
 
 namespace GUIPhotoShop
 {
@@ -19,51 +20,58 @@ namespace GUIPhotoShop
         }
 
 
-        string pathOriginalImage;
-        string pathModifiedImage;
+
+        static string pathOriginalImage;
+        static string pathModifiedImage;
+        Bitmap modifiedImage;
+
         private void Button1_Click(object sender, EventArgs e)
         {
             if (OpenFile.ShowDialog() == DialogResult.OK)
             {
                 pathOriginalImage = OpenFile.FileName;
                 pictureBox1.Image = Image.FromFile(pathOriginalImage);
+                //?
                 OpenFile.Dispose();
             }
         }
 
+        //NegativeButton
         private void Button_1_Click(object sender, EventArgs e)
         {
-            string newFile = PhotoShopLib.ImageEditor.MakeNegative(pathOriginalImage);
-            pathModifiedImage = newFile;
+            modifiedImage = ImageEditor.MakeNegative(pathOriginalImage, out pathModifiedImage);
 
-            pictureBox2.Image = Image.FromFile(newFile);
-            pictureBox2.Dispose();
+            pictureBox2.Image = modifiedImage;
+            
         }
 
+        //BlackAndWhiteButton
         private void Button4_Click(object sender, EventArgs e)
         {
-            string newFile = PhotoShopLib.ImageEditor.MakeBlackAndWhite(pathOriginalImage);
-            pictureBox2.Image = Image.FromFile(newFile);
-            pictureBox2.Dispose();
+            modifiedImage = ImageEditor.MakeBlackAndWhite(pathOriginalImage, out pathModifiedImage);
+
+            pictureBox2.Image = modifiedImage;
+
         }
 
+        //BlurrButton
         private void Button5_Click(object sender, EventArgs e)
         {
-            string newFile = PhotoShopLib.ImageEditor.MakeBlurr(pathOriginalImage);
-            pictureBox2.Image = Image.FromFile(newFile);
-            pictureBox2.Dispose();
+            modifiedImage = ImageEditor.MakeBlurr(pathOriginalImage, out pathModifiedImage);
+
+            pictureBox2.Image = modifiedImage;
+
         }
+
 
         private void Button2_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
-            save.FileName = pathModifiedImage;
+            save.FileName = Path.GetFileName(pathModifiedImage);
 
             if (save.ShowDialog() == DialogResult.OK)
             {
-                BinaryWriter bw = new BinaryWriter(File.Create(pathModifiedImage));
-                
-                bw.Dispose();
+                modifiedImage.Save(pathModifiedImage);
             }
         }
     }

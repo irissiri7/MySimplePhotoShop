@@ -26,12 +26,12 @@ namespace PhotoShopLib
                 {
                     Color pixelColor = imageClone.GetPixel(x, y);
 
-                    var negativeA = 255 - pixelColor.A;
+                    //var negativeA = 255 - pixelColor.A;
                     var negativeR = 255 - pixelColor.R;
                     var negativeG = 255 - pixelColor.G;
                     var negativeB = 255 - pixelColor.B;
 
-                    Color newColor = Color.FromArgb(negativeA, negativeR, negativeG, negativeB);
+                    Color newColor = Color.FromArgb(negativeR, negativeG, negativeB);
                     imageClone.SetPixel(x, y, newColor);
                 }
             }
@@ -56,9 +56,9 @@ namespace PhotoShopLib
                 {
                     Color pixelColor = imageClone.GetPixel(x, y);
 
-                    var averageValue = (pixelColor.A + pixelColor.R + pixelColor.G + pixelColor.B) / 4;
+                    var averageValue = (pixelColor.R + pixelColor.G + pixelColor.B) / 3;
 
-                    Color newColor = Color.FromArgb(averageValue, averageValue, averageValue, averageValue);
+                    Color newColor = Color.FromArgb(averageValue, averageValue, averageValue);
                     imageClone.SetPixel(x, y, newColor);
                 }
             }
@@ -90,16 +90,15 @@ namespace PhotoShopLib
                     Color colorNextY = originalImage.GetPixel(x, y + 1);
 
                     Color colorCorner1 = originalImage.GetPixel(x - 1, y - 1);
-                    Color colorCorner2 = originalImage.GetPixel(x + 1, y - y);
+                    Color colorCorner2 = originalImage.GetPixel(x + 1, y - 1);
                     Color colorCorner3 = originalImage.GetPixel(x- 1, y + 1);
                     Color colorCorner4 = originalImage.GetPixel(x + 1, y + 1);
 
-                    var averageA = (originalColor.A + colorPrevX.A + colorNextX.A + colorPrevY.A + colorNextY.A + colorCorner1.A + colorCorner2.A + colorCorner3.A + colorCorner4.A) / 9;
                     var averageR = (originalColor.R + colorPrevX.R + colorNextX.R + colorPrevY.R + colorNextY.R + colorCorner1.R + colorCorner2.R + colorCorner3.R + colorCorner4.R) / 9;
                     var averageG = (originalColor.G + colorPrevX.G + colorNextX.G + colorPrevY.G + colorNextY.G + colorCorner1.G + colorCorner2.G + colorCorner3.G + colorCorner4.G) / 9;
                     var averageB = (originalColor.B + colorPrevX.B + colorNextX.B + colorPrevY.B + colorNextY.B + colorCorner1.B + colorCorner2.B + colorCorner3.B + colorCorner4.B) / 9;
 
-                    Color newColor = Color.FromArgb(averageA, averageR, averageG, averageB);
+                    Color newColor = Color.FromArgb(averageR, averageG, averageB);
 
                     imageClone.SetPixel(x, y, newColor);
 

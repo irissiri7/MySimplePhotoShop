@@ -10,7 +10,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            //First round: attemting to use command prompt args.
+            //First round: attemting to use command prompt args. Samma kod två gånger?
             try
             {
                 Bitmap negativeImage = ImageEditor.MakeNegative(args[0], out string newFilePathNegative);
@@ -37,9 +37,9 @@ namespace ConsoleApp1
             }
 
             //Round 2: using new input
-            string input = Console.ReadLine();
+            string originalFilePath = Console.ReadLine();
 
-            bool isInputValid = InputHandler.CheckIfValidInput(input, out string message);
+            bool isInputValid = InputHandler.CheckIfValidInput(originalFilePath, out string message);
 
             if (isInputValid == false)
             {
@@ -50,15 +50,15 @@ namespace ConsoleApp1
 
             else
             {
-                Bitmap blurredImage = ImageEditor.MakeBlurr(input, out string filePathBlurr);
+                Bitmap blurredImage = ImageEditor.MakeBlurr(originalFilePath, out string filePathBlurr);
                 blurredImage.Save(filePathBlurr);
 
-                Bitmap NegativeImage = ImageEditor.MakeNegative(input, out string filePathNegative);
-                blurredImage.Save(filePathNegative);
+                Bitmap negativeImage = ImageEditor.MakeNegative(originalFilePath, out string filePathNegative);
+                negativeImage.Save(filePathNegative);
 
 
-                Bitmap BlackAndWhiteImage = ImageEditor.MakeBlackAndWhite(input, out string filePathBlackAndWhite);
-                blurredImage.Save(filePathBlackAndWhite);
+                Bitmap blackAndWhiteImage = ImageEditor.MakeBlackAndWhite(originalFilePath, out string filePathBlackAndWhite);
+                blackAndWhiteImage.Save(filePathBlackAndWhite);
 
                 Console.WriteLine("Operations done. Copies of you manipulated images are saved where the original file is. Bye!");
                 System.Environment.Exit(0);
