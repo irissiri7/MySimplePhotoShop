@@ -20,24 +20,30 @@ namespace GUIPhotoShop
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
+        }
 
+        //Variables that should be accessible between different buttonclicks
         static string originalPath;
         static string pathModifiedImage;
         Bitmap modifiedImage;
 
+        //Opening the original image.
         private void Button1_Click(object sender, EventArgs e)
         {
-            if (OpenFile.ShowDialog() == DialogResult.OK)
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG)|*.bmp;*.jpg;*.gif;*.png";
+
+            if (open.ShowDialog() == DialogResult.OK)
             {
-                originalPath = OpenFile.FileName;
-                pictureBox1.Image = Image.FromFile(originalPath);
-                //?
-                OpenFile.Dispose();
+                originalPath = open.FileName;
+                pictureBox1.Image = Image.FromFile(open.FileName);
             }
         }
 
-        //NegativeButton
+        //Making a negative copy
         private void Button_1_Click(object sender, EventArgs e)
         {
             Bitmap originalImage = new Bitmap(originalPath); 
@@ -47,7 +53,7 @@ namespace GUIPhotoShop
             
         }
 
-        //BlackAndWhiteButton
+        //Making a black and white copy
         private void Button4_Click(object sender, EventArgs e)
         {
             Bitmap originalImage = new Bitmap(originalPath);
@@ -57,7 +63,7 @@ namespace GUIPhotoShop
 
         }
 
-        //BlurrButton
+        //Making a blurr copy
         private void Button5_Click(object sender, EventArgs e)
         {
             Bitmap originalImage = new Bitmap(originalPath);
@@ -67,22 +73,20 @@ namespace GUIPhotoShop
 
         }
 
-        //This only works if i don't change the filename
+        //Saving the copy
         private void Button2_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG)|*.bmp;*.jpg;*.gif;*.png";
             save.FileName = Path.GetFileName(pathModifiedImage);
-
+            
             if (save.ShowDialog() == DialogResult.OK)
             {
-                modifiedImage.Save(pathModifiedImage);
+                modifiedImage.Save(save.FileName);
             }
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

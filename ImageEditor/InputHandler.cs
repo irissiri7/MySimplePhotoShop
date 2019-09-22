@@ -12,7 +12,7 @@ namespace PhotoShopLib
             bool validInput = true;
             message = "All clear";
 
-            if ((Path.GetExtension(input) != ".jpg") && (Path.GetExtension(input) != ".png") && (Path.GetExtension(input) != ".jfif"))
+            if ((Path.GetExtension(input) != ".jpg") && (Path.GetExtension(input) != ".png") && (Path.GetExtension(input) != ".bmp") && (Path.GetExtension(input) != ".gif"))
             {
                 validInput = false;
                 message = "The image is not of right format";
