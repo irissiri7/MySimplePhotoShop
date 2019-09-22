@@ -14,24 +14,25 @@ namespace PhotoShopLib
 
         //This is the fasttrack method for simply manipulating an image in all 
         //possible ways, save hem and then closing the program
-        public static void ManipulateAllAndCloseProgram(string filePath)
+        public static void ManipulateAllAndCloseProgram(Bitmap originalImage, string originalPath)
         {
-            Bitmap negativeImage = ImageEditor.MakeNegative(filePath, out string newFilePathNegative);
-            negativeImage.Save(newFilePathNegative);
+            Bitmap negativeImage = ImageEditor.MakeNegative(originalImage, originalPath, out string newPathNegative);
+            negativeImage.Save(newPathNegative);
 
-            Bitmap blackAndWhiteImage = ImageEditor.MakeBlackAndWhite(filePath, out string newFilePathBlackAndWhite);
-            blackAndWhiteImage.Save(newFilePathBlackAndWhite);
+            Bitmap blackAndWhiteImage = ImageEditor.MakeBlackAndWhite(originalImage, originalPath, out string newPathBlackAndWhite);
+            blackAndWhiteImage.Save(newPathBlackAndWhite);
 
-            Bitmap blurredImage = ImageEditor.MakeBlurr(filePath, out string newFilePathBlurred);
-            blurredImage.Save(newFilePathBlurred);
+            Bitmap blurredImage = ImageEditor.MakeBlurr(originalImage, originalPath, out string newPathBlurred);
+            blurredImage.Save(newPathBlurred);
 
-            Console.WriteLine("Operations done. Copies of your manipulated images are saved where the original file is. Bye!");
+            Console.WriteLine("Manipulations done!");
+            Console.WriteLine("Copies of your manipulated images are saved where the original file is.");
+            Console.WriteLine("Bye!");
             System.Environment.Exit(0);
         }
 
-        public static Bitmap MakeNegative(string originalFile, out string newFilePath)
+        public static Bitmap MakeNegative(Bitmap originalImage, string originalPath, out string newPath)
         {
-            Bitmap originalImage = new Bitmap(originalFile);
             Bitmap imageClone = (Bitmap)originalImage.Clone();
 
             int x, y;
@@ -51,16 +52,15 @@ namespace PhotoShopLib
                 }
             }
 
-            newFilePath = FileNameEditor.AddSuffixToFileName(originalFile, "_negative");
+            newPath = FileNameEditor.AddSuffixToFileName(originalPath, "_negative");
 
             Console.WriteLine("Happydays");
 
             return imageClone;
         }
 
-        public static Bitmap MakeBlackAndWhite(string originalFile, out string newFilePath)
+        public static Bitmap MakeBlackAndWhite(Bitmap originalImage, string originalPath, out string newPath)
         {
-            Bitmap originalImage = new Bitmap(originalFile);
             Bitmap imageClone = (Bitmap)originalImage.Clone();
 
             int x, y;
@@ -78,17 +78,16 @@ namespace PhotoShopLib
                 }
             }
 
-            newFilePath = FileNameEditor.AddSuffixToFileName(originalFile, "_blackandwhite");
+            newPath = FileNameEditor.AddSuffixToFileName(originalPath, "_blackandwhite");
 
             Console.WriteLine("Happydays");
 
             return imageClone;
         }
 
-        //This method will blurr all pixels except the outer ones, meaning the image will have a "frame" of 1 px wide unblurred pixels.
-        public static Bitmap MakeBlurr(string originalFile, out string newFilePath)
+        ///This method will blurr all pixels except the outer ones, meaning the image will have a "frame" of 1 px wide unblurred pixels.
+        public static Bitmap MakeBlurr(Bitmap originalImage, string originalPath, out string newPath)
         {
-            Bitmap originalImage = new Bitmap(originalFile);
             Bitmap imageClone = (Bitmap)originalImage.Clone();
 
             int x, y;
@@ -120,7 +119,7 @@ namespace PhotoShopLib
                 }
             }
 
-            newFilePath = FileNameEditor.AddSuffixToFileName(originalFile, "_blurr");
+            newPath = FileNameEditor.AddSuffixToFileName(originalPath, "_blurr");
 
             Console.WriteLine("Happydays");
 

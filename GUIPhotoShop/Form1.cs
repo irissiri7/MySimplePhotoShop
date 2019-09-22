@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace GUIPhotoShop
 
 
 
-        static string pathOriginalImage;
+        static string originalPath;
         static string pathModifiedImage;
         Bitmap modifiedImage;
 
@@ -29,8 +30,8 @@ namespace GUIPhotoShop
         {
             if (OpenFile.ShowDialog() == DialogResult.OK)
             {
-                pathOriginalImage = OpenFile.FileName;
-                pictureBox1.Image = Image.FromFile(pathOriginalImage);
+                originalPath = OpenFile.FileName;
+                pictureBox1.Image = Image.FromFile(originalPath);
                 //?
                 OpenFile.Dispose();
             }
@@ -39,7 +40,8 @@ namespace GUIPhotoShop
         //NegativeButton
         private void Button_1_Click(object sender, EventArgs e)
         {
-            modifiedImage = ImageEditor.MakeNegative(pathOriginalImage, out pathModifiedImage);
+            Bitmap originalImage = new Bitmap(originalPath); 
+            modifiedImage = ImageEditor.MakeNegative(originalImage, originalPath, out pathModifiedImage);
 
             pictureBox2.Image = modifiedImage;
             
@@ -48,7 +50,8 @@ namespace GUIPhotoShop
         //BlackAndWhiteButton
         private void Button4_Click(object sender, EventArgs e)
         {
-            modifiedImage = ImageEditor.MakeBlackAndWhite(pathOriginalImage, out pathModifiedImage);
+            Bitmap originalImage = new Bitmap(originalPath);
+            modifiedImage = ImageEditor.MakeBlackAndWhite(originalImage, originalPath, out pathModifiedImage);
 
             pictureBox2.Image = modifiedImage;
 
@@ -57,13 +60,14 @@ namespace GUIPhotoShop
         //BlurrButton
         private void Button5_Click(object sender, EventArgs e)
         {
-            modifiedImage = ImageEditor.MakeBlurr(pathOriginalImage, out pathModifiedImage);
+            Bitmap originalImage = new Bitmap(originalPath);
+            modifiedImage = ImageEditor.MakeBlurr(originalImage, originalPath, out pathModifiedImage);
 
             pictureBox2.Image = modifiedImage;
 
         }
 
-
+        //This only works if i don't change the filename
         private void Button2_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
@@ -73,6 +77,7 @@ namespace GUIPhotoShop
             {
                 modifiedImage.Save(pathModifiedImage);
             }
+
         }
 
         private void Form1_Load(object sender, EventArgs e)

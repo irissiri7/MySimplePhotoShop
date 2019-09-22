@@ -10,32 +10,34 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to this awesome photoshop! We will shortly try to process the image you have reffered to.");
+            Console.WriteLine("Welcome to this fantastically sophisticated photoshop! We will produce a negative, a black and " +
+                "white AND a blurred version of your image and save it on your computer. We will now try to process the image you have reffered to.");
             
             //Round: attemting to use command prompt args.
             try
             {
-                ImageEditor.ManipulateAllAndCloseProgram(args[0]);
+                Bitmap originalImage = new Bitmap(args[0]);
+                ImageEditor.ManipulateAllAndCloseProgram(originalImage, args[0]);
             }
 
-            //If command promt args not available, asking for new input
+            //If command promt args doesn't work, asking for new input
             catch (ArgumentException)
             {
-                Console.WriteLine("Something was wrong with the input. Please try to enter a new file path");
+                Console.WriteLine("Oh, something was wrong with the input. Please try to enter a new file path");
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("Something was wrong with the input. Please try to enter a new file path");
+                Console.WriteLine("Oh, something was wrong with the input. Please try to enter a new file path");
             }
             catch (IndexOutOfRangeException)
             {
-                Console.WriteLine("Something was wrong with the input. Please try to enter a new file path");
+                Console.WriteLine("Oh, something was wrong with the input. Please try to enter a new file path");
             }
 
-            //Round 2: using new input
-            string originalFilePath = Console.ReadLine();
-
-            bool isInputValid = InputHandler.CheckIfValidInput(originalFilePath, out string message);
+            //Round 2: using new input from user input, checking if valid and converting to Bitmap
+            string originalPath = Console.ReadLine();
+            bool isInputValid = InputHandler.CheckIfValidInput(originalPath, out string message);
+            Bitmap newOriginalImage = new Bitmap(originalPath);
 
             if (isInputValid == false)
             {
@@ -46,7 +48,7 @@ namespace ConsoleApp1
 
             else
             {
-                ImageEditor.ManipulateAllAndCloseProgram(originalFilePath);
+                ImageEditor.ManipulateAllAndCloseProgram(newOriginalImage, originalPath);
             }
 
         }
