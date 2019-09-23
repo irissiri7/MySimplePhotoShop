@@ -39,7 +39,7 @@
     <None Update="testImages\TooSmall.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="testImages\WrongFormat.gif">
+    <None Update="testImages\WrongFormat.tif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

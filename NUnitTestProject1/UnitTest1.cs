@@ -14,6 +14,7 @@ namespace Tests
         {
             string originalpath = "dummyPath";
 
+            //----ARRANGE----
             //Creating two identical images for testing
             Bitmap testImageManual = new Bitmap(3, 3);
             Bitmap testImageToMethod = new Bitmap(3, 3);
@@ -23,8 +24,7 @@ namespace Tests
             testImageManual.SetPixel(1, 1, startColor);
             testImageToMethod.SetPixel(1, 1, startColor);
 
-            //Manually calculating the rgb-values for a negativ manipulation of the startColors 
-            //and assiging it to new Color object.
+            //Manually calculating the rgb-values for a negativ manipulation
             var negativeR = 255 - 100;
             var negativeG = 255 - 100;
             var negativeB = 255 - 100;
@@ -34,9 +34,11 @@ namespace Tests
             //Assigning the manually manipulated pixels to testImageManual.
             testImageManual.SetPixel(1, 1, manipulatedColors);
 
+            //----ACT----
             //Sending in the other test image to method for manipulation.
             Bitmap manipulatedBitmap = ImageEditor.MakeNegative(testImageToMethod, originalpath, out _);
 
+            //----ASSERT----
             //Finally comparing the manually manipulated pixel with the pixel going through the method
             Assert.AreEqual(testImageManual.GetPixel(1, 1), manipulatedBitmap.GetPixel(1, 1));
 
@@ -47,6 +49,7 @@ namespace Tests
         {
             string originalpath = "dummyPath";
 
+            //----ARRANGE----
             //Creating two identical images for testing
             Bitmap testImageManual = new Bitmap(3, 3);
             Bitmap testImageToMethod = new Bitmap(3, 3);
@@ -56,19 +59,19 @@ namespace Tests
             testImageManual.SetPixel(1, 1, startColor);
             testImageToMethod.SetPixel(1, 1, startColor);
 
-            //Manually calculating the rgb-values for a B&W manipulation of the startColors 
-            //and assiging it to new Color object.
+            //Manually calculating the rgb-values for a black and white manipulation 
             var averageColors = (70 + 130 + 200) / 3;
-            
-
+  
             Color manipulatedColors = Color.FromArgb(averageColors, averageColors, averageColors);
 
             //Assigning the manually manipulated pixels to testImageManual.
             testImageManual.SetPixel(1, 1, manipulatedColors);
 
+            //----ACT----
             //Sending in the other test image to method for manipulation.
             Bitmap manipulatedBitmap = ImageEditor.MakeBlackAndWhite(testImageToMethod, originalpath, out _);
 
+            //----ASSERT----
             //Finally comparing the manually manipulated pixel with the pixel going through the method
             Assert.AreEqual(testImageManual.GetPixel(1, 1), manipulatedBitmap.GetPixel(1, 1));
 
@@ -79,6 +82,7 @@ namespace Tests
         {
             string originalpath = "dummyPath";
 
+            //----ARRANGE----
             //Creating two identical images for testing
             Bitmap testImageManual = new Bitmap(3, 3);
             Bitmap testImageToMethod = new Bitmap(3, 3);
@@ -93,8 +97,7 @@ namespace Tests
             testImageToMethod.SetPixel(1, 1, startColorDeviantPixel);
 
 
-            //Manually calculating the rgb-values for a blurr manipulation of the startColors 
-            //and assiging it to new Color object.
+            //Manually calculating the rgb-values for a blurr manipulation of the startColors
             var averageColorsR = ((100 * 8) + 200) / 9;
             var averageColorsG = ((100 * 8) + 200) / 9;
             var averageColorsB = ((100 * 8) + 200) / 9;
@@ -105,9 +108,11 @@ namespace Tests
             //Assigning the manually manipulated pixels to testImageManual.
             testImageManual.SetPixel(1, 1, manipulatedColors);
 
+            //----ACT----
             //Sending in the other test image to method for manipulation.
             Bitmap manipulatedBitmap = ImageEditor.MakeBlurr(testImageToMethod, originalpath, out _);
 
+            //----ASSERT----
             //Finally comparing the manually manipulated pixel with the pixel going through the method
             Assert.AreEqual(testImageManual.GetPixel(1, 1), manipulatedBitmap.GetPixel(1, 1));
 
@@ -115,14 +120,14 @@ namespace Tests
 
         //TESTING THE INPUTHANDLER
         [Test]
-        public void CheckInput_TooBigImage_ReturnsFalse()
+        public void InputHandler_TooBigImage_ReturnsFalse()
         {
             string testImage = @"testImages\TooBigDog.jpg";
             bool resultOfBigImage = InputHandler.CheckIfValidInput(testImage, out string message);
             Assert.AreEqual(false, resultOfBigImage);
         }
         [Test]
-        public void CheckInput_TooSmallImage_ReturnsFalse()
+        public void InputHandler_TooSmallImage_ReturnsFalse()
         {
             string testImage = @"testImages\TooSmall.jpg";
             bool resultOfSmallImage = InputHandler.CheckIfValidInput(testImage, out string message);
@@ -130,16 +135,16 @@ namespace Tests
         }
 
         [Test]
-        public void CheckInput_WrongFormat_ReturnsFalse()
+        public void InputHandler_WrongFormat_ReturnsFalse()
         {
-            string testImage = @"testImages\WrongFormat.gif";
+            string testImage = @"testImages\WrongFormat.tif";
             bool resultOfWrongFormat = InputHandler.CheckIfValidInput(testImage, out string message);
-            Assert.AreEqual(true, resultOfWrongFormat);
+            Assert.AreEqual(false, resultOfWrongFormat);
         }
 
         //TESTING THE FILENAMEEDITOR
         [Test]
-        public void FileNameEditor_HappyDays_ReturnsString()
+        public void FileNameEditor_HappyDays_ReturnsCorrectString()
         {
             string testImage = @"C:\Users\lydia\Desktop\puppy.jpg";
             string testString = PhotoShopLib.FileNameEditor.AddSuffixToFileName(testImage, "_someSuffix");

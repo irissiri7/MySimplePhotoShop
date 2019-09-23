@@ -28,10 +28,10 @@ namespace GUIPhotoShop
         //Variables that should be accessible between different buttonclicks
         static string originalPath;
         static string pathModifiedImage;
+        Bitmap originalImage;
         Bitmap modifiedImage;
 
-        //Opening the original image.
-        private void Button1_Click(object sender, EventArgs e)
+        private void Button_Open(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
             open.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG)|*.bmp;*.jpg;*.gif;*.png";
@@ -39,42 +39,45 @@ namespace GUIPhotoShop
             if (open.ShowDialog() == DialogResult.OK)
             {
                 originalPath = open.FileName;
-                pictureBox1.Image = Image.FromFile(open.FileName);
+                bool isFileValid = InputHandler.CheckIfValidInput(originalPath, out string message);
+
+                if (isFileValid == false)
+                {
+                    MessageBox.Show(message);
+                }
+                else
+                {
+                    originalImage = new Bitmap(originalPath);
+                    pictureBox1.Image = Image.FromFile(open.FileName);
+                }
             }
         }
 
-        //Making a negative copy
-        private void Button_1_Click(object sender, EventArgs e)
+        private void Button_Negative(object sender, EventArgs e)
         {
-            Bitmap originalImage = new Bitmap(originalPath); 
             modifiedImage = ImageEditor.MakeNegative(originalImage, originalPath, out pathModifiedImage);
 
             pictureBox2.Image = modifiedImage;
             
         }
 
-        //Making a black and white copy
-        private void Button4_Click(object sender, EventArgs e)
+        private void Button_BlackAndWhite(object sender, EventArgs e)
         {
-            Bitmap originalImage = new Bitmap(originalPath);
             modifiedImage = ImageEditor.MakeBlackAndWhite(originalImage, originalPath, out pathModifiedImage);
 
             pictureBox2.Image = modifiedImage;
 
         }
 
-        //Making a blurr copy
-        private void Button5_Click(object sender, EventArgs e)
+        private void Button_Blurr(object sender, EventArgs e)
         {
-            Bitmap originalImage = new Bitmap(originalPath);
             modifiedImage = ImageEditor.MakeBlurr(originalImage, originalPath, out pathModifiedImage);
 
             pictureBox2.Image = modifiedImage;
 
         }
 
-        //Saving the copy
-        private void Button2_Click(object sender, EventArgs e)
+        private void Button_Save(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
             save.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG)|*.bmp;*.jpg;*.gif;*.png";
