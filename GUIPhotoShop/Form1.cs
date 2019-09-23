@@ -26,8 +26,8 @@ namespace GUIPhotoShop
         }
 
         //Variables that should be accessible between different buttonclicks
-        static string originalPath;
-        static string pathModifiedImage;
+        string originalPath;
+        string pathModifiedImage;
         Bitmap originalImage;
         Bitmap modifiedImage;
 
@@ -71,7 +71,7 @@ namespace GUIPhotoShop
 
         private void Button_Blurr(object sender, EventArgs e)
         {
-            modifiedImage = ImageEditor.MakeBlurr(originalImage, originalPath, out pathModifiedImage);
+            modifiedImage = ImageEditor.MakeBlur(originalImage, originalPath, out pathModifiedImage);
 
             pictureBox2.Image = modifiedImage;
 

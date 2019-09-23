@@ -6,30 +6,6 @@ namespace PhotoShopLib
 {
     public class ImageEditor
     {
-        //FIELDS
-        //PROPERTIES
-        //CONSTRUCTOR
-        //METHODS
-
-
-        //This is the fasttrack method for simply manipulating an image in all 
-        //possible ways, save hem and then closing the program
-        public static void ManipulateAllAndCloseProgram(Bitmap originalImage, string originalPath)
-        {
-            Bitmap negativeImage = ImageEditor.MakeNegative(originalImage, originalPath, out string newPathNegative);
-            negativeImage.Save(newPathNegative);
-
-            Bitmap blackAndWhiteImage = ImageEditor.MakeBlackAndWhite(originalImage, originalPath, out string newPathBlackAndWhite);
-            blackAndWhiteImage.Save(newPathBlackAndWhite);
-
-            Bitmap blurredImage = ImageEditor.MakeBlurr(originalImage, originalPath, out string newPathBlurred);
-            blurredImage.Save(newPathBlurred);
-
-            Console.WriteLine("Manipulations done!");
-            Console.WriteLine("Copies of your manipulated images are saved where the original file is.");
-            Console.WriteLine("Bye!");
-            System.Environment.Exit(0);
-        }
 
         public static Bitmap MakeNegative(Bitmap originalImage, string originalPath, out string newPath)
         {
@@ -53,8 +29,6 @@ namespace PhotoShopLib
             }
 
             newPath = FileNameEditor.AddSuffixToFileName(originalPath, "_negative");
-
-            Console.WriteLine("Happydays");
 
             return imageClone;
         }
@@ -80,13 +54,11 @@ namespace PhotoShopLib
 
             newPath = FileNameEditor.AddSuffixToFileName(originalPath, "_blackandwhite");
 
-            Console.WriteLine("Happydays");
-
             return imageClone;
         }
 
-        ///This method will blurr all pixels except the outer ones, meaning the image will have a "frame" of 1 px wide unblurred pixels.
-        public static Bitmap MakeBlurr(Bitmap originalImage, string originalPath, out string newPath)
+        ///This method will blur all pixels except the outer ones, meaning the image will have a "frame" of 1 px wide unblurred pixels.
+        public static Bitmap MakeBlur(Bitmap originalImage, string originalPath, out string newPath)
         {
             Bitmap imageClone = (Bitmap)originalImage.Clone();
 
@@ -119,9 +91,7 @@ namespace PhotoShopLib
                 }
             }
 
-            newPath = FileNameEditor.AddSuffixToFileName(originalPath, "_blurr");
-
-            Console.WriteLine("Happydays");
+            newPath = FileNameEditor.AddSuffixToFileName(originalPath, "_blur");
 
             return imageClone;
         }

@@ -12,6 +12,13 @@ namespace PhotoShopLib
             bool validInput = true;
             message = "All clear";
 
+            if (!File.Exists(input))
+            {
+                validInput = false;
+                message = "The image dosen't exist!";
+                return validInput;
+            }
+
             if ((Path.GetExtension(input) != ".jpg") && (Path.GetExtension(input) != ".png") && (Path.GetExtension(input) != ".bmp") && (Path.GetExtension(input) != ".gif"))
             {
                 validInput = false;

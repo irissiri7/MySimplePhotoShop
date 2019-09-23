@@ -19,21 +19,14 @@ namespace Tests
             Bitmap testImageManual = new Bitmap(3, 3);
             Bitmap testImageToMethod = new Bitmap(3, 3);
 
-            Color startColor = Color.FromArgb(100, 100, 100);
+            //Prepping the image going through method
+            Color startColors = Color.FromArgb(100, 100, 100);
+            testImageToMethod.SetPixel(1, 1, startColors);
 
-            testImageManual.SetPixel(1, 1, startColor);
-            testImageToMethod.SetPixel(1, 1, startColor);
-
-            //Manually calculating the rgb-values for a negativ manipulation
-            var negativeR = 255 - 100;
-            var negativeG = 255 - 100;
-            var negativeB = 255 - 100;
-
-            Color manipulatedColors = Color.FromArgb(negativeR, negativeG, negativeB);
-
-            //Assigning the manually manipulated pixels to testImageManual.
+            //Prepping the image with manually manipulated colors
+            Color manipulatedColors = Color.FromArgb(155, 155, 155);
             testImageManual.SetPixel(1, 1, manipulatedColors);
-
+            
             //----ACT----
             //Sending in the other test image to method for manipulation.
             Bitmap manipulatedBitmap = ImageEditor.MakeNegative(testImageToMethod, originalpath, out _);
@@ -54,17 +47,13 @@ namespace Tests
             Bitmap testImageManual = new Bitmap(3, 3);
             Bitmap testImageToMethod = new Bitmap(3, 3);
 
+            //Prepping the image going through method
             Color startColor = Color.FromArgb(70, 130, 200);
-
-            testImageManual.SetPixel(1, 1, startColor);
             testImageToMethod.SetPixel(1, 1, startColor);
 
-            //Manually calculating the rgb-values for a black and white manipulation 
+            //Prepping the image with manually manipulated colors
             var averageColors = (70 + 130 + 200) / 3;
-  
             Color manipulatedColors = Color.FromArgb(averageColors, averageColors, averageColors);
-
-            //Assigning the manually manipulated pixels to testImageManual.
             testImageManual.SetPixel(1, 1, manipulatedColors);
 
             //----ACT----
@@ -97,7 +86,7 @@ namespace Tests
             testImageToMethod.SetPixel(1, 1, startColorDeviantPixel);
 
 
-            //Manually calculating the rgb-values for a blurr manipulation of the startColors
+            //Manually calculating the rgb-values for a blur manipulation of the startColors
             var averageColorsR = ((100 * 8) + 200) / 9;
             var averageColorsG = ((100 * 8) + 200) / 9;
             var averageColorsB = ((100 * 8) + 200) / 9;
@@ -110,7 +99,7 @@ namespace Tests
 
             //----ACT----
             //Sending in the other test image to method for manipulation.
-            Bitmap manipulatedBitmap = ImageEditor.MakeBlurr(testImageToMethod, originalpath, out _);
+            Bitmap manipulatedBitmap = ImageEditor.MakeBlur(testImageToMethod, originalpath, out _);
 
             //----ASSERT----
             //Finally comparing the manually manipulated pixel with the pixel going through the method
