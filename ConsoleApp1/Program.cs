@@ -34,7 +34,6 @@ namespace ConsoleApp1
             Bitmap originalImage;
             do
             {
-                Start:
                 inputIsValid = InputHandler.CheckIfValidInput(filePath, out message);
                 if (inputIsValid)
                 {
@@ -44,10 +43,11 @@ namespace ConsoleApp1
                     }
                     catch (ArgumentException)
                     {
+                        
                         Console.WriteLine("Something peculiar went wrong...");
                         Console.WriteLine("Please enter a new file path");
                         filePath = Console.ReadLine();
-                        goto Start;
+                        inputIsValid = false; continue;
                     }
                     Bitmap negativeImage = ImageEditor.MakeNegative(originalImage, filePath, out string newPathNegative);
                     negativeImage.Save(newPathNegative);
