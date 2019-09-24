@@ -18,7 +18,8 @@ namespace ConsoleApp1
             string filePath;
             Bitmap originalImage = new Bitmap(3, 3);
 
-            //Round 1, attempting to use command prompt args.
+            //First attempting to use command prompt args, otherwise asking for new input.
+
             if (args.Length > 0)
             {
                 filePath = args[0];
@@ -28,6 +29,8 @@ namespace ConsoleApp1
                 Console.WriteLine("Could not find a file path. Please enter a new file path");
                 filePath = Console.ReadLine();
             }
+
+            //First attempt to manipulate image.
 
             if (InputHandler.CheckIfValidInput(filePath, out string message1))
             {
@@ -59,7 +62,12 @@ namespace ConsoleApp1
                 Console.WriteLine("Please try to enter a new file path");
             }
 
+            //If something went wrong, asking for new input.
+
             filePath = Console.ReadLine();
+
+
+            //Second attempt to manipulate image.
 
             if (InputHandler.CheckIfValidInput(filePath, out string message2))
             {
