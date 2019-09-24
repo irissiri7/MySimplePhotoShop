@@ -11,6 +11,7 @@ namespace PhotoShopLib
         {
             bool validInput = true;
             message = "All clear";
+            System.Drawing.Image img;
 
             if (!File.Exists(input))
             {
@@ -26,7 +27,17 @@ namespace PhotoShopLib
                 return validInput;
             }
 
-            System.Drawing.Image img = System.Drawing.Image.FromFile(input);
+            try
+            { 
+            img = System.Drawing.Image.FromFile(input);
+            }
+            catch(ArgumentException)
+            {
+                validInput = false;
+                message = "Could not process the file";
+                return validInput;
+            }
+
             if (img.Height > 1300 || img.Width > 1300)
             {
                 validInput = false;

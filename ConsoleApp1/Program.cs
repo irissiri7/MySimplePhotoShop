@@ -12,75 +12,40 @@ namespace ConsoleApp1
         {
             Console.WriteLine("Welcome to this fantastically sophisticated photoshop! " +
                 "We will produce a negative, a black and white AND a blurred version " +
-                "of your image and save it on your computer. We will now try to process " +
+                "of your image and save it to your computer. We will now try to process " +
                 "the image you have reffered to.");
 
             string filePath;
+            Bitmap originalImage = new Bitmap(3, 3);
 
+            //Round 1, attempting to use command prompt args.
             if (args.Length > 0)
             {
                 filePath = args[0];
-
-                if (InputHandler.CheckIfValidInput(filePath, out string message1))
-                {
-                    try
-                    {
-                        Bitmap originalImage = new Bitmap(filePath);
-
-                        Bitmap negativeImage = ImageEditor.MakeNegative(originalImage, filePath, out string newPathNegative);
-                        negativeImage.Save(newPathNegative);
-
-                        Bitmap blackAndWhiteImage = ImageEditor.MakeBlackAndWhite(originalImage, filePath, out string newPathBlackAndWhite);
-                        blackAndWhiteImage.Save(newPathBlackAndWhite);
-
-                        Bitmap blurredImage = ImageEditor.MakeBlur(originalImage, filePath, out string newPathBlurred);
-                        blurredImage.Save(newPathBlurred);
-
-                        Console.WriteLine("Manipulations done!");
-                        Console.WriteLine("Copies of your manipulated images are saved where the original file is.");
-                        Console.WriteLine("Bye!");
-                        System.Environment.Exit(0);
-                    }
-                    catch (ArgumentException)
-                    {
-                        Console.WriteLine("Oh, something was wrong with the input. Please try to enter a new file path");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine(message1);
-                    Console.WriteLine("Please try to enter a new file path");
-                }
             }
             else
             {
-                Console.WriteLine("Could not find a file path. Please try to enter a new file path");
+                Console.WriteLine("Could not find a file path. Please enter a new file path");
+                filePath = Console.ReadLine();
             }
 
-            //Round 2: using new input from user, checking if valid and converting to Bitmap
-
-            filePath = Console.ReadLine();
-
-            bool isInputValid = InputHandler.CheckIfValidInput(filePath, out string message2);
-
-            if (isInputValid == false)
+            if (InputHandler.CheckIfValidInput(filePath, out string message1))
             {
-                Console.WriteLine(message2);
-                Console.WriteLine("Program will exit");
-                System.Environment.Exit(0);
-            }
-
-            else
-            {
-                Bitmap newOriginalImage = new Bitmap(filePath);
-
-                Bitmap negativeImage = ImageEditor.MakeNegative(newOriginalImage, filePath, out string newPathNegative);
+                try
+                {
+                    originalImage = new Bitmap(filePath);
+                }
+                catch (ArgumentException)
+                {
+                    Console.WriteLine("Something went wrong. Please try to enter a new file path");
+                }
+                Bitmap negativeImage = ImageEditor.MakeNegative(originalImage, filePath, out string newPathNegative);
                 negativeImage.Save(newPathNegative);
 
-                Bitmap blackAndWhiteImage = ImageEditor.MakeBlackAndWhite(newOriginalImage, filePath, out string newPathBlackAndWhite);
+                Bitmap blackAndWhiteImage = ImageEditor.MakeBlackAndWhite(originalImage, filePath, out string newPathBlackAndWhite);
                 blackAndWhiteImage.Save(newPathBlackAndWhite);
 
-                Bitmap blurredImage = ImageEditor.MakeBlur(newOriginalImage, filePath, out string newPathBlurred);
+                Bitmap blurredImage = ImageEditor.MakeBlur(originalImage, filePath, out string newPathBlurred);
                 blurredImage.Save(newPathBlurred);
 
                 Console.WriteLine("Manipulations done!");
@@ -88,7 +53,46 @@ namespace ConsoleApp1
                 Console.WriteLine("Bye!");
                 System.Environment.Exit(0);
             }
+            else
+            {
+                Console.WriteLine(message1);
+                Console.WriteLine("Please try to enter a new file path");
+            }
 
+            filePath = Console.ReadLine();
+
+            if (InputHandler.CheckIfValidInput(filePath, out string message2))
+            {
+                try
+                {
+                    originalImage = new Bitmap(filePath);
+                }
+                catch (ArgumentException)
+                {
+                    Console.WriteLine("Something went wrong. Program will exit");
+                    System.Environment.Exit(0);
+                }
+
+                Bitmap negativeImage = ImageEditor.MakeNegative(originalImage, filePath, out string newPathNegative);
+                negativeImage.Save(newPathNegative);
+
+                Bitmap blackAndWhiteImage = ImageEditor.MakeBlackAndWhite(originalImage, filePath, out string newPathBlackAndWhite);
+                blackAndWhiteImage.Save(newPathBlackAndWhite);
+
+                Bitmap blurredImage = ImageEditor.MakeBlur(originalImage, filePath, out string newPathBlurred);
+                blurredImage.Save(newPathBlurred);
+
+                Console.WriteLine("Manipulations done!");
+                Console.WriteLine("Copies of your manipulated images are saved where the original file is.");
+                Console.WriteLine("Bye!");
+                System.Environment.Exit(0);    
+            }
+            else
+            {
+                Console.WriteLine(message2);
+                Console.WriteLine("Program will exit");
+                System.Environment.Exit(0);
+            }
         }
     }
 }
