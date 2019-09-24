@@ -15,10 +15,8 @@ namespace ConsoleApp1
                 "of your image and save it to your computer. We will now try to process " +
                 "the image you have reffered to.");
 
+            //Checking if we have command prompt args, otherwise asking for filepath.
             string filePath;
-            Bitmap originalImage = new Bitmap(3, 3);
-
-            //First attempting to use command prompt args, otherwise asking for new input.
 
             if (args.Length > 0)
             {
@@ -30,77 +28,51 @@ namespace ConsoleApp1
                 filePath = Console.ReadLine();
             }
 
-            //First attempt to manipulate image.
 
-            if (InputHandler.CheckIfValidInput(filePath, out string message1))
+            bool inputIsValid;
+            string message;
+            Bitmap originalImage;
+            do
             {
-                try
+                Start:
+                inputIsValid = InputHandler.CheckIfValidInput(filePath, out message);
+                if (inputIsValid)
                 {
-                    originalImage = new Bitmap(filePath);
-                }
-                catch (ArgumentException)
-                {
-                    Console.WriteLine("Something went wrong. Please try to enter a new file path");
-                }
-                Bitmap negativeImage = ImageEditor.MakeNegative(originalImage, filePath, out string newPathNegative);
-                negativeImage.Save(newPathNegative);
+                    try
+                    {
+                        originalImage = new Bitmap(filePath);
+                    }
+                    catch (ArgumentException)
+                    {
+                        Console.WriteLine("Something peculiar went wrong...");
+                        Console.WriteLine("Please enter a new file path");
+                        filePath = Console.ReadLine();
+                        goto Start;
+                    }
+                    Bitmap negativeImage = ImageEditor.MakeNegative(originalImage, filePath, out string newPathNegative);
+                    negativeImage.Save(newPathNegative);
 
-                Bitmap blackAndWhiteImage = ImageEditor.MakeBlackAndWhite(originalImage, filePath, out string newPathBlackAndWhite);
-                blackAndWhiteImage.Save(newPathBlackAndWhite);
+                    Bitmap blackAndWhiteImage = ImageEditor.MakeBlackAndWhite(originalImage, filePath, out string newPathBlackAndWhite);
+                    blackAndWhiteImage.Save(newPathBlackAndWhite);
 
-                Bitmap blurredImage = ImageEditor.MakeBlur(originalImage, filePath, out string newPathBlurred);
-                blurredImage.Save(newPathBlurred);
+                    Bitmap blurredImage = ImageEditor.MakeBlur(originalImage, filePath, out string newPathBlurred);
+                    blurredImage.Save(newPathBlurred);
 
-                Console.WriteLine("Manipulations done!");
-                Console.WriteLine("Copies of your manipulated images are saved where the original file is.");
-                Console.WriteLine("Bye!");
-                System.Environment.Exit(0);
-            }
-            else
-            {
-                Console.WriteLine(message1);
-                Console.WriteLine("Please try to enter a new file path");
-            }
-
-            //If something went wrong, asking for new input.
-
-            filePath = Console.ReadLine();
-
-
-            //Second attempt to manipulate image.
-
-            if (InputHandler.CheckIfValidInput(filePath, out string message2))
-            {
-                try
-                {
-                    originalImage = new Bitmap(filePath);
-                }
-                catch (ArgumentException)
-                {
-                    Console.WriteLine("Something went wrong. Program will exit");
+                    Console.WriteLine("Manipulations done!");
+                    Console.WriteLine("Copies of your manipulated images are saved where the original file is.");
+                    Console.WriteLine("Bye!");
                     System.Environment.Exit(0);
                 }
+                else
+                {
+                    Console.WriteLine(message);
+                    Console.WriteLine("Please enter a new file path");
+                    filePath = Console.ReadLine();
+                }
 
-                Bitmap negativeImage = ImageEditor.MakeNegative(originalImage, filePath, out string newPathNegative);
-                negativeImage.Save(newPathNegative);
+            } while (!inputIsValid);
 
-                Bitmap blackAndWhiteImage = ImageEditor.MakeBlackAndWhite(originalImage, filePath, out string newPathBlackAndWhite);
-                blackAndWhiteImage.Save(newPathBlackAndWhite);
 
-                Bitmap blurredImage = ImageEditor.MakeBlur(originalImage, filePath, out string newPathBlurred);
-                blurredImage.Save(newPathBlurred);
-
-                Console.WriteLine("Manipulations done!");
-                Console.WriteLine("Copies of your manipulated images are saved where the original file is.");
-                Console.WriteLine("Bye!");
-                System.Environment.Exit(0);    
-            }
-            else
-            {
-                Console.WriteLine(message2);
-                Console.WriteLine("Program will exit");
-                System.Environment.Exit(0);
-            }
         }
     }
 }

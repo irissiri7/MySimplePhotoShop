@@ -1,8 +1,7 @@
 {
   "profiles": {
     "ConsoleApp1": {
-      "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\lydia\\Desktop\\puppy.jpg"
+      "commandName": "Project"
     }
   }
 }
