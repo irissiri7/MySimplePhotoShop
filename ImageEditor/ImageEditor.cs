@@ -57,7 +57,8 @@ namespace PhotoShopLib
             return imageClone;
         }
 
-        ///This method will blur all pixels except the outer ones, meaning the image will have a "frame" of 1 px wide unblurred pixels.
+        ///This method will blur all pixels except the outer ones, meaning the image will have a "frame" 
+        ///of 1 px wide unblurred pixels. For that reason the program doesnt accept images under 300x300px
         public static Bitmap MakeBlur(Bitmap originalImage, string originalPath, out string newPath)
         {
             Bitmap imageClone = (Bitmap)originalImage.Clone();

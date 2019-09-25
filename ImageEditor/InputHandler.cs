@@ -44,7 +44,9 @@ namespace PhotoShopLib
                 message = "The image is too big";
                 return validInput;
             }
-            if(img.Height < 300 || img.Width < 300)
+            //Since the blur algorithm doesn't blur the outer most "frame" of an image
+            //the image is not allowed to be too small
+            if (img.Height < 300 || img.Width < 300)
             {
                 validInput = false;
                 message = "The image is too small";
