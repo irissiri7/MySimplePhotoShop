@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoShopLib", "ImageEditor\PhotoShopLib.csproj", "{63C1B13F-8CFF-4DAA-A5E6-CFF98570712D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{9A303265-D670-47AE-A933-420DE0031FCB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{48163BDA-9799-4C03-B848-6ACF24E0A926}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{5DECF5FE-86DD-4AFE-8CB0-E9B9B3ABB6EA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoShopLib", "PhotoShopLib\PhotoShopLib.csproj", "{223444EA-5809-46CA-8E5C-65335F961F19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{63C1B13F-8CFF-4DAA-A5E6-CFF98570712D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63C1B13F-8CFF-4DAA-A5E6-CFF98570712D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63C1B13F-8CFF-4DAA-A5E6-CFF98570712D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63C1B13F-8CFF-4DAA-A5E6-CFF98570712D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9A303265-D670-47AE-A933-420DE0031FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9A303265-D670-47AE-A933-420DE0031FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A303265-D670-47AE-A933-420DE0031FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{5DECF5FE-86DD-4AFE-8CB0-E9B9B3ABB6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DECF5FE-86DD-4AFE-8CB0-E9B9B3ABB6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DECF5FE-86DD-4AFE-8CB0-E9B9B3ABB6EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{223444EA-5809-46CA-8E5C-65335F961F19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{223444EA-5809-46CA-8E5C-65335F961F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{223444EA-5809-46CA-8E5C-65335F961F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{223444EA-5809-46CA-8E5C-65335F961F19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

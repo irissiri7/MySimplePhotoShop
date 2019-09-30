@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ImageEditor\PhotoShopLib.csproj" />
+    <ProjectReference Include="..\PhotoShopLib\PhotoShopLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

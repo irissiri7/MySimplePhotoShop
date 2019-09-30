@@ -87,8 +87,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ImageEditor\PhotoShopLib.csproj">
-      <Project>{63c1b13f-8cff-4daa-a5e6-cff98570712d}</Project>
+    <ProjectReference Include="..\PhotoShopLib\PhotoShopLib.csproj">
+      <Project>{223444ea-5809-46ca-8e5c-65335f961f19}</Project>
       <Name>PhotoShopLib</Name>
     </ProjectReference>
   </ItemGroup>
