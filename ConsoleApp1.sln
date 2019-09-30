@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitTestProject1", "NUnitT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoShopLib", "ImageEditor\PhotoShopLib.csproj", "{63C1B13F-8CFF-4DAA-A5E6-CFF98570712D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIPhotoShop", "GUIPhotoShop\GUIPhotoShop.csproj", "{9A303265-D670-47AE-A933-420DE0031FCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{9A303265-D670-47AE-A933-420DE0031FCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
